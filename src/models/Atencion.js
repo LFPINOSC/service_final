@@ -21,7 +21,7 @@ const Atencion = sequelize.define('Atencion', {
     allowNull: false,
   },
   estaActivo: {
-    type: DataTypes.BOOLEAN, // Se cambió de SMALLINT a BOOLEAN
+    type: DataTypes.BOOLEAN, 
     allowNull: false,
     defaultValue: true,
   },
