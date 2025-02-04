@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/sequelizeConfig.js';
 
-const Persona = sequelize.define("estadoCivil",{
+const EstadoCivil = sequelize.define("estadoCivil",{
     secuencial:{
         type:DataTypes.INTEGER,
         autoIncrement:true,
