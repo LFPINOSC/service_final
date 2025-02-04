@@ -22,7 +22,12 @@ const Medico = sequelize.define("medico", {
     correo: {
         type: DataTypes.STRING(50),
         allowNull: false
-    }
+    },
+    estaActivo: {
+        type: DataTypes.SMALLINT, 
+        allowNull: false,
+        defaultValue: 1,
+    },
 });
 
 export default Medico;
