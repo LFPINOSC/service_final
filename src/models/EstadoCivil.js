@@ -12,6 +12,11 @@ const EstadoCivil = sequelize.define("estadoCivil",{
         type: DataTypes.ENUM('soltero', 'casado', 'divirciado'),
         allowNull: false,
     },
+    estaActivo: {
+        type: DataTypes.SMALLINT, 
+        allowNull: false,
+        defaultValue: 1,
+      },
 
 });
 export default EstadoCivil;
