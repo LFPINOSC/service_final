@@ -14,3 +14,4 @@ const EstadoCivil = sequelize.define("estadoCivil",{
     },
 
 });
+export default EstadoCivil;
