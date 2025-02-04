@@ -18,7 +18,11 @@ const Turno=sequelize.define("turno",{
     estado:{
         type:DataTypes.STRING(30),
         allowNull:false
-
-    }
+    },
+    estaActivo: {
+        type: DataTypes.SMALLINT, 
+        allowNull: false,
+        defaultValue: 1,
+      },
 });
 export default Turno;

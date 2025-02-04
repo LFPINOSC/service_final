@@ -11,6 +11,11 @@ const Especialidad=sequelize.define("especialidad",{
         type:DataTypes.STRING(20),
         allowNull:false
     },
+    estaActivo: {
+        type: DataTypes.SMALLINT, 
+        allowNull: false,
+        defaultValue: 1,
+      },
     
 });
 export default Especialidad;
