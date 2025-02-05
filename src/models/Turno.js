@@ -23,6 +23,6 @@ const Turno=sequelize.define("turno",{
         type: DataTypes.SMALLINT, 
         allowNull: false,
         defaultValue: 1,
-      },
+    },
 });
 export default Turno;
