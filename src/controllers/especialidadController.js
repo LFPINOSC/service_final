@@ -4,8 +4,8 @@ import Especialidad from '../models/Especialidad.js';
 class EspecialidadController {
     async createEspecialidad(req, res) {
         try {
-            const { nombre, estaActivo } = req.body;
-            const especialidad = await Especialidad.create({ nombre, estaActivo });
+            const espedialidadData = req.body;
+            const especialidad = await Especialidad.create(especialidadData);
             const response = new apiResponse(true, especialidad, 201, 'La especialidad se creó correctamente');
             res.status(201).json(response);
         } catch (error) {
@@ -46,10 +46,10 @@ class EspecialidadController {
     async updateEspecialidad(req, res) {
         try {
             const secuencial = req.params.secuencial;
-            const { nombre, estaActivo } = req.body;
+            const especialidadData = req.body;
             const especialidad = await Especialidad.findByPk(secuencial);
             if (especialidad) {
-                await especialidad.update({ nombre, estaActivo });
+                await especialidad.update(especialidadData);
                 const response = new apiResponse(true, especialidad, 200, 'Los cambios se han realizado exitosamente');
                 res.status(200).json(response);
             } else {

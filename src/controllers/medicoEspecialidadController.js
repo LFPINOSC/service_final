@@ -4,8 +4,8 @@ import MedicoEspecialidad from '../models/MedicoEspecialidad.js';
 class MedicoEspecialidadController {
     async createMedicoEspecialidad(req, res) {
         try {
-            const { cedulamedico, especialidadsecuencial } = req.body;
-            const medicoEspecialidad = await MedicoEspecialidad.create({ cedulamedico, especialidadsecuencial });
+            const medicoEspecialidadData = req.body;
+            const medicoEspecialidad = await MedicoEspecialidad.create(medicoEspecialidadData);
             const response = new apiResponse(true, medicoEspecialidad, 201, 'La especialidad del médico se creó correctamente');
             res.status(201).json(response);
         } catch (error) {
@@ -46,10 +46,10 @@ class MedicoEspecialidadController {
     async updateMedicoEspecialidad(req, res) {
         try {
             const secuencial = req.params.secuencial;
-            const { cedulamedico, especialidadsecuencial } = req.body;
+            const medicoEspecialidadData = req.body;
             const medicoEspecialidad = await MedicoEspecialidad.findByPk(secuencial);
             if (medicoEspecialidad) {
-                await medicoEspecialidad.update({ cedulamedico, especialidadsecuencial });
+                await medicoEspecialidad.update(medicoEspecialidadData);
                 const response = new apiResponse(true, medicoEspecialidad, 200, 'Los cambios se han realizado exitosamente');
                 res.status(200).json(response);
             } else {
