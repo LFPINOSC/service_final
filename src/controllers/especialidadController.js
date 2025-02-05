@@ -5,7 +5,7 @@ class EspecialidadController {
     async createEspecialidad(req, res) {
         try {
             const espedialidadData = req.body;
-            const especialidad = await Especialidad.create(especialidadData);
+            const especialidad = await Especialidad.create(espedialidadData);
             const response = new apiResponse(true, especialidad, 201, 'La especialidad se creó correctamente');
             res.status(201).json(response);
         } catch (error) {
