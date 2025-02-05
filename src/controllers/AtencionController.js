@@ -1,91 +1,83 @@
-import Atencion from '../models/Atencion.js';  
-import Turno from '../models/Turno.js';  
+import Atencion from '../models/Atencion.js';
 import apiResponse from '../components/apiResponse.js';
 
 class AtencionController {
-  async createAtencion(req, res) {
-    try {
-      const { descripcion, observaciones, estado, secuencialTurno } = req.body;
-      const turno = await Turno.findByPk(secuencialTurno);
-      if (!turno) {
-        return res.status(404).json(new apiResponse(false, null, 404, 'Turno no encontrado'));
-      }
-      const atencion = await Atencion.create({
-        descripcion,
-        observaciones,
-        estado,
-        secuencialTurno
-      });
-
-      res.status(201).json(new apiResponse(true, atencion, 201, 'Atención creada exitosamente'));
-    } catch (error) {
-      res.status(500).json(new apiResponse(false, null, 500, 'Error del servidor al crear la atención'));
+    async createAtencion(req, res) {
+        try {
+            const atencionData = req.body;
+            const atencion = await Atencion.create(atencionData);
+            const response = new apiResponse(true, atencion, 201, 'La atención se creó correctamente');
+            res.status(201).json(response);
+        } catch (error) {
+            const response = new apiResponse(false, null, 404, 'Error al crear la atención');
+            res.status(404).json(response);
+        }
     }
-  }
-  async getAllAtenciones(req, res) {
-    try {
-      const atenciones = await Atencion.findAll({
-        include: [{
-          model: Turno,
-          as: 'turno'
-        }]
-      });
 
-      res.status(200).json(new apiResponse(true, atenciones, 200, 'Atenciones obtenidas correctamente'));
-    } catch (error) {
-      res.status(500).json(new apiResponse(false, null, 500, 'Error al obtener las atenciones'));
+    async getAtenciones(req, res) {
+        try {
+            const atenciones = await Atencion.findAll();
+            const response = new apiResponse(true, atenciones, 201, 'Listado de atenciones');
+            res.status(201).json(response);
+        } catch (error) {
+            const response = new apiResponse(false, null, 404, 'Error al recuperar el listado de atenciones');
+            res.status(404).json(response);
+        }
     }
-  }
-  async getAtencion(req, res) {
-    try {
-      const atencionId = req.params.id;
-      const atencion = await Atencion.findByPk(atencionId, {
-        include: [{
-          model: Turno,
-          as: 'turno'
-        }]
-      });
 
-      if (atencion) {
-        res.json(new apiResponse(true, atencion, 200, 'Atención encontrada'));
-      } else {
-        res.status(404).json(new apiResponse(false, null, 404, 'Atención no encontrada'));
-      }
-    } catch (error) {
-      res.status(500).json(new apiResponse(false, null, 500, 'Error al obtener la atención'));
+    async getByAtencion(req, res) {
+        try {
+            const atencionSecuencial = req.params.secuencial;
+            const atencion = await Atencion.findByPk(atencionSecuencial);
+            if (atencion) {
+                const response = new apiResponse(true, atencion, 201, 'Atención encontrada');
+                res.status(201).json(response);
+            } else {
+                const response = new apiResponse(true, null, 301, 'No existe una atención con ese secuencial registrado');
+                res.status(301).json(response);
+            }
+        } catch (error) {
+            const response = new apiResponse(false, null, 404, 'Error al tratar de recuperar la atención');
+            res.status(404).json(response);
+        }
     }
-  }
-  async updateAtencion(req, res) {
-    try {
-      const atencionId = req.params.id;
-      const atencionData = req.body;
-      const atencion = await Atencion.findByPk(atencionId);
 
-      if (atencion) {
-        await atencion.update(atencionData);
-        res.json(new apiResponse(true, atencion, 200, 'Atención actualizada exitosamente'));
-      } else {
-        res.status(404).json(new apiResponse(false, null, 404, 'Atención no encontrada'));
-      }
-    } catch (error) {
-      res.status(500).json(new apiResponse(false, null, 500, 'Error al actualizar la atención'));
+    async updateAtencion(req, res) {
+        try {
+            const atencionSecuencial = req.params.secuencial;
+            const atencionData = req.body;
+            const atencion = await Atencion.findByPk(atencionSecuencial);
+            if (atencion) {
+                await atencion.update(atencionData);
+                const response = new apiResponse(true, atencion, 201, 'Los cambios se han realizado exitosamente');
+                res.status(201).json(response);
+            } else {
+                const response = new apiResponse(true, null, 301, 'La atención a modificar no se encontró');
+                res.status(301).json(response);
+            }
+        } catch (error) {
+            const response = new apiResponse(false, null, 404, 'Error al modificar la atención');
+            res.status(404).json(response);
+        }
     }
-  }
-  async deleteAtencion(req, res) {
-    try {
-      const atencionId = req.params.id;
-      const atencion = await Atencion.findByPk(atencionId);
 
-      if (atencion) {
-        await atencion.destroy();
-        res.status(204).json(new apiResponse(true, null, 204, 'Atención eliminada exitosamente'));
-      } else {
-        res.status(404).json(new apiResponse(false, null, 404, 'Atención no encontrada'));
-      }
-    } catch (error) {
-      res.status(500).json(new apiResponse(false, null, 500, 'Error al eliminar la atención'));
+    async deleteAtencion(req, res) {
+        try {
+            const atencionSecuencial = req.params.secuencial;
+            const atencion = await Atencion.findByPk(atencionSecuencial);
+            if (atencion) {
+                await atencion.destroy();
+                const response = new apiResponse(true, atencion, 201, 'Atención eliminada');
+                res.status(201).json(response);
+            } else {
+                const response = new apiResponse(true, null, 301, 'No existe esa atención a eliminar');
+                res.status(301).json(response);
+            }
+        } catch (error) {
+            const response = new apiResponse(false, null, 404, 'Error al eliminar la atención');
+            res.status(404).json(response);
+        }
     }
-  }
 }
 
-export default new AtencionController();
+export default new AtencionController;
