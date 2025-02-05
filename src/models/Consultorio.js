@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/sequelizeConfig.js';
 
-const Consultario = sequelize.define('Consultorio', {
+const Consultorio = sequelize.define('Consultorio', {
   secuencial: {
     type: DataTypes.BIGINT,
     primaryKey: true,
@@ -19,4 +19,4 @@ const Consultario = sequelize.define('Consultorio', {
     defaultValue: 1,
   },
 });
-export default Consultario;
+export default Consultorio;
