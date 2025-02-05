@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import sequelize from '../config/sequelizeConfig.js';
 
 const Sexo = sequelize.define("sexo", {
-    id: {
+    secuencial: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
