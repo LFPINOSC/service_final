@@ -1,12 +1,11 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/sequelizeConfig.js';
 
-const EstadoCivil = sequelize.define("estadoCivil",{
-    secuencial:{
-        type:DataTypes.INTEGER,
-        autoIncrement:true,
-        primaryKey:true,
-        allowNull:false,
+const Sexo = sequelize.define("sexo", {
+    secuencial: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
     },
     nombre: {
         type: DataTypes.STRING(20),
@@ -16,7 +15,8 @@ const EstadoCivil = sequelize.define("estadoCivil",{
         type: DataTypes.SMALLINT, 
         allowNull: false,
         defaultValue: 1,
-      },
+    },
 
 });
-export default EstadoCivil;
+
+export default Sexo;
