@@ -1,9 +1,10 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/sequelizeConfig.js';
+import Turno from './Turno.js';
 
 const Atencion = sequelize.define('Atencion', {
   secuencial: {
-    type: DataTypes.BIGINT,
+    type: DataTypes.INTERGER,
     primaryKey: true,
     autoIncrement: true,
     autoIncrementIdentity: true,

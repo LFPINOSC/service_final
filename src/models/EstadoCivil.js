@@ -9,8 +9,8 @@ const EstadoCivil = sequelize.define("estadoCivil",{
         allowNull:false,
     },
     nombre: {
-        type: DataTypes.ENUM('soltero', 'casado', 'divirciado'),
-        allowNull: false,
+        type: DataTypes.STRING(20),
+        allowNull: false
     },
     estaActivo: {
         type: DataTypes.SMALLINT, 
