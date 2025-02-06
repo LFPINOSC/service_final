@@ -1,5 +1,5 @@
 
-import { Medicamento } from '../models/Medicamento.js';
+import { Medicamento } from '../models/Medicamentos.js'
 
 export const medicamentoController = {
   async getAll(req, res) {
@@ -62,7 +62,7 @@ export const medicamentoController = {
 };
 
 // controllers/recetaController.js
-import { Receta, Medicamento, RecetaMedicamentos } from '../models/recetas.js';
+import { Receta, Medicamento, RecetaMedicamentos } from '../models/Receta.js';
 
 export const recetaController = {
   async getAll(req, res) {

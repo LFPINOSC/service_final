@@ -1,4 +1,4 @@
-import { Receta } from "../models/recetas.js";
+import { Receta } from "../models/Receta.js";
 import { RecetaMedicamentos } from "../models/RecetaMedicamentos.js";
 
 

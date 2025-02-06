@@ -8,16 +8,38 @@ const Receta = sequelize.define('Receta', {
     autoIncrement: true,
     autoIncrementIdentity: true,
   },
-  fecha: {
-    type: DataTypes.DATEONLY, // Usar DATEONLY en lugar de STRING
+  cedulaMedico: {
+    type: DataTypes.STRING,
     allowNull: false,
+    references: {
+      model: 'Medico',
+      key: 'cedula'
+    }
+  },
+  cedulaPersona: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    references: {
+      model: 'Persona',
+      key: 'cedula'
+    }
+  },
+  secuencialAtencion: {
+    type: DataTypes.BIGINT,
+    allowNull: false,
+    references: {
+      model: 'Atencion',
+      key: 'secuencial'
+    }
   },
   estaActivo: {
-    type: DataTypes.SMALLINT, 
+    type: DataTypes.SMALLINT,
     allowNull: false,
     defaultValue: 1,
-  },
-  // Otros campos si los necesitas
+  }
+}, {
+  tableName: 'recetas',
+  timestamps: true
 });
 
-export default Receta; // Exportar correctamente la entidad
+export default Receta;

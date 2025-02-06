@@ -1,5 +1,5 @@
 import express from "express";
-import { recetaController } from "../controllers/recetaController.js";
+import { recetaController } from "../controllers/RecetasController.js";
 import AuthMiddleware from "../config/authMiddleware.js";
 
 const router = express.Router();
