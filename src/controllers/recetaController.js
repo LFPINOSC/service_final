@@ -1,6 +1,6 @@
 import { Receta } from "../models/recetas.js";
-import { RecetaMedicamentos } from "../models/recetaMedicamentos.js";
-import { Medicamento } from "../models/medicamento.js";
+import { RecetaMedicamentos } from "../models/RecetaMedicamentos.js";
+
 
 export const recetaController = {
   async getAll(req, res) {

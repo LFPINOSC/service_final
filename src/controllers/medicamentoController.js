@@ -1,5 +1,5 @@
 
-import { Medicamento } from '../models/medicamento.js';
+import { Medicamento } from '../models/Medicamento.js';
 
 export const medicamentoController = {
   async getAll(req, res) {
