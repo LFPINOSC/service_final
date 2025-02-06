@@ -29,14 +29,7 @@ const Medico = sequelize.define("medico", {
         allowNull: false,
         defaultValue: 1,
     },
-    especialidadsecuencial:{
-        type:DataTypes.INTEGER,
-        allowNull:false,
-        references:{
-            model:Especialidad,
-            key:'secuencial'
-        }
-    }
+    
 });
 
 export default Medico;
