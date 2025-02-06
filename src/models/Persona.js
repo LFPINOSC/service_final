@@ -1,5 +1,7 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/sequelizeConfig.js';
+import EstadoCivil from './EstadoCivil.js';
+import Sexo from './Sexo.js';
 
 const Persona = sequelize.define("persona",{
     cedula:{
@@ -32,6 +34,22 @@ const Persona = sequelize.define("persona",{
         allowNull: false,
         defaultValue: 1,
       },
+    secuencialEstadoCivil:{
+        type:DataTypes.INTEGER,
+        allowNull:false,
+        references:{
+            model:EstadoCivil,
+            key:'secuencial'
+        }
+    },
+    secuencialSexo:{
+        type:DataTypes.INTEGER,
+        allowNull:false,
+        references:{
+            model:Sexo,
+            key:'secuencial'
+        }
+    },
     
 });
 export default Persona;
