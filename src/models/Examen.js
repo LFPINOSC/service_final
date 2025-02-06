@@ -3,18 +3,18 @@ import sequelize from '../config/sequelizeConfig.js';
 
 const Examen = sequelize.define('Examen', {
   secuencial: {
-    type: DataTypes.BIGINT,
+    type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
     autoIncrementIdentity: true,
   },
-  descripcion: {
-    type: DataTypes.STRING(75),
+  nombre: {
+    type: DataTypes.STRING(30),
     allowNull: false,
-    field: 'descripcion',
+    field: 'nombre',
   },
   indicaciones: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING(40),
     allowNull: false,
     field: 'indicaciones',
   },

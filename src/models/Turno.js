@@ -39,27 +39,7 @@ const Turno = sequelize.define("turno", {
     cedulaMedico: {
         type: DataTypes.STRING(10),
         allowNull: false,
-        references: {
-            model: Medico,
-            key: 'cedula'
-        }
-    },
-    secuencialConsultorio: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: Consultorio,
-            key: 'secuencial'
-        }
-    }
+        defaultValue: 1,
+      },
 });
-
-Turno.belongsTo(Consultorio, { foreignKey: 'secuencialConsultorio', as: 'consultorio' });
-Turno.belongsTo(Persona, { foreignKey: 'cedulaPersona', as: 'paciente' });
-Turno.belongsTo(Medico, { foreignKey: 'cedulaMedico', as: 'medico' });
-
-Consultorio.hasMany(Turno, { foreignKey: 'secuencialConsultorio', as: 'turnos' });
-Persona.hasMany(Turno, { foreignKey: 'cedulaPersona', as: 'turnos' });
-Medico.hasMany(Turno, { foreignKey: 'cedulaMedico', as: 'turnos' });
-
 export default Turno;

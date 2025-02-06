@@ -17,15 +17,25 @@ const Atencion = sequelize.define('Atencion', {
     type: DataTypes.STRING(75),
     allowNull: false,
   },
-  Turno: {
-    type: DataTypes.STRING(75),
-    allowNull: false,
-  },
   estaActivo: {
     type: DataTypes.BOOLEAN, 
     allowNull: false,
     defaultValue: true,
   },
+  secuencialTurno: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: Turno,  
+      key: 'secuencial', 
+    },
+    onUpdate: 'onUpdate',
+    onDelete: 'onDelete',
+  },
 });
+
+Atencion.belongsTo(Turno, { foreignKey: 'secuencialTurno', as: 'turno' });
+Turno.hasMany(Atencion, { foreignKey: 'secuencialTurno', as: 'atenciones' });
+
 
 export default Atencion;
