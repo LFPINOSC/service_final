@@ -10,7 +10,7 @@ const Tratamiento = sequelize.define('Tratamiento', {
     autoIncrementIdentity: true,
   },
   secuencialAtencion: {
-    type: DataTypes.BIGINT,
+    type: DataTypes.INTEGER,
     allowNull: false,
     references: {
       model: Atencion,
