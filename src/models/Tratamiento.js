@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/sequelizeConfig.js';
+import Atencion from '../models/Atencion.js';
 
 const Tratamiento = sequelize.define('Tratamiento', {
   secuencial: {
@@ -11,6 +12,10 @@ const Tratamiento = sequelize.define('Tratamiento', {
   secuencialAtencion: {
     type: DataTypes.BIGINT,
     allowNull: false,
+    references: {
+      model: Atencion,
+      key: 'secuencial'
+    }
   },
   descripcion: {
     type: DataTypes.TEXT,
